@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet">
+	<title>festival</title>
+	<style type="text/css">
+		*{margin: 0px; padding: 0px; font-family: 'Source Sans Pro', sans-serif;}
+		body::-webkit-scrollbar {display: none;}
+		body{background: #0a0b0e; overflow-x: hidden; overflow-y: hidden;}
+		#blur_box{position: relative; left: 50%; transform: translateX(-50%); filter: blur(10px); transition: all 1.5s}
+		#band{position: relative; left: 50%; transform: translateX(-50%); width: 1940px;}
+		#people{position: absolute; left: 50%; transform: translateX(-50%); top: 350px;}
+		#man{position: absolute; left: 50%; transform: translateX(-50%); width: 2300px; animation: man_move 0.2s infinite alternate; animation-play-state: paused;}
+		@keyframes man_move{
+			from{top: 0px;}
+			to{top: 40px;}
+		}
+		#but{position: absolute; left: 50%; transform: translateX(-50%); top: 420px; width: 1200px; height: 300px; line-height: 280px; border: solid 3px white; overflow: hidden; transition: all 0.6s}
+		#but h1{text-align: center; font-size: 7em; color: white; font-weight: 700}
+
+		#explain1{position: absolute; width: 1000px; height: 400px; top: 800px; left: 100px; color: white; opacity: 0; transition: 2s}
+		#explain1 h1{font-weight: 600; padding: 0 0 20px 0; font-size: 2.5em}
+		#explain1 h2{font-weight: 200; line-height: 50px;}
+		#explain2{position: absolute; width: 1400px; height: 600px; top: 1700px; left: 50%; transform: translateX(-50%); color: white; transition: all 3s; opacity: 0.0}
+		
+		#explain2 h2{text-align: center; font-weight: 400; font-size: 2.5em; line-height: 60px;}
+		#more{position: absolute; width: 150px; height: 60px; top: 1850px; border: solid 1px white; color: white; left: 50%; transform: translateX(-50%); opacity: 0.0}
+		#more h1{padding: 8px; font-size: 2em; text-align: center; font-weight: 200; }
+		/*#monitor{width: 100px; height: 40px; background: green; position: fixed; color: white; text-align: center; line-height: 40px; right: 0px;}*/
+	</style>
+</head>
+<body onclick="button()">
+	<audio id="crowd">
+		<source src="audio/crowd.m4a" type="audio/mpeg">
+	</audio>
+<div id="blur_box" onclick="button()">
+	<img src="./img/main(blue).jpg" id="band">
+	<div id="people">
+		<img src="./img/man1.png" id="man">
+		<img src="./img/man2.png" id="man">
+		<img src="./img/man3.png" id="man">
+	</div>
+	
+</div>
+	<div id="but" onclick="button()">
+		<h1>Do you like festival?</h1>
+	</div>
+	<div id="explain1">
+
+		<h1>모임의 장, 축제</h1>
+		<h2>축제는 원래 개인 또는 집단에서 특별한 의미가 있는 일 혹은 시간을 기념하는 의식에서 유래됐지만,<br>현대에는 단순히 기념을 넘어서 다 같이 문화를 즐기기 위한 문화의 장으로 발전했습니다.<br>전국에서 매우 화려하고 다양한 종류의 축제가 매년 열리고 있습니다.</h2>
+	</div>
+	<div id="explain2">
+		<h2>하지만, 화려한 축제 속에서 얼마나 많은 쓰레기가 발생하는지 알고 계시나요?</h2>
+	</div>
+	<a href = "./index2.html">
+		<div id="more">
+			<h1>Next</h1>
+		</div>
+	</a>
+	<div id="monitor"></div>
+
+	<script type="text/javascript">
+		function button(){
+		document.body.style.overflowY = "visible";
+		crowd.play();
+		blur_box.style.filter = "blur(0px)";
+		but.style.opacity = "0";
+		explain1.style.opacity = "1";
+
+		for(var i=0; i<man.length; i++){
+		man[i].style.animationPlayState = "running";
+		}
+		window.onscroll = function(){
+			var t= document.documentElement.scrollTop;
+			//monitor.innerHTML = t + "px";
+			if(700 < t){
+				explain1.style.opacity = "0"
+			}else{
+				explain1.style.opacity = "1.0"
+			}
+			if(1100 < t){
+				explain2.style.opacity = "1.0"
+			}else{
+				explain2.style.opacity = "0"
+			}
+			if(1100 < t){
+				more.style.opacity = "1.0"
+			}else{
+				more.style.opacity = "0"
+			}
+		}
+		}
+		
+	</script>
+</body>
